@@ -18,7 +18,8 @@ USER root
 
 # 3) install packages
 #RUN pip install networkx rpy2==3.1.0 python-igraph powerlaw numpy scipy python-louvain
-RUN apt-get install -y libboost-all-dev
+RUN  apt-get update && \
+     apt-get install -y libboost-all-dev
 
 # 4) change back to notebook user
 USER $NB_UID
