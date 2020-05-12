@@ -19,7 +19,12 @@ USER root
 # 3) install packages
 #RUN pip install networkx rpy2==3.1.0 python-igraph powerlaw numpy scipy python-louvain
 RUN  apt-get update && \
-     apt-get install -y libboost-all-dev
+     apt-get install -y libboost-all-dev && \
+     apt purge --auto-remove cmake && \
+     wget -O - https://apt.kitware.com/keys/kitware-archive-latest.asc 2>/dev/null | sudo apt-key add - && \
+     apt-add-repository 'deb https://apt.kitware.com/ubuntu/ bionic main' && \
+     apt update && \
+     apt install cmake
 
 # 4) change back to notebook user
 USER $NB_UID
