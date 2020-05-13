@@ -20,7 +20,8 @@ USER root
 #RUN pip install networkx rpy2==3.1.0 python-igraph powerlaw numpy scipy python-louvain
 RUN  apt-get update && \
      apt-get install -y libboost-all-dev && \
-     apt-get install -y cmake
+     apt remove cmake && \
+     pip install cmake --upgrade
 
 # 4) change back to notebook user
 USER $NB_UID
