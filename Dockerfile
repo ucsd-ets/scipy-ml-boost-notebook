@@ -29,12 +29,22 @@ RUN  apt-get update && \
      apt-add-repository -y 'deb https://apt.kitware.com/ubuntu/ bionic main' && \
      apt-get update && \
      apt-get install -y cmake && \
-     wget --no-check-certificate --load-cookies /tmp/cookies.txt "https://docs.google.com/uc?export=download&confirm=$(wget --quiet --save-cookies /tmp/cookies.txt --keep-session-cookies 'https://docs.google.com/uc?export=download&id=1LY_Cc8Kb6YsZWNs7z78Yd48lPoV4wIgp' -O- | sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1\n/p')&id=1LY_Cc8Kb6YsZWNs7z78Yd48lPoV4wIgp" -O temp.tgz && rm -rf /tmp/cookies.txt && \
-     CUDNN_TAR_FILE="temp.tgz" && \
-     tar -xzvf ${CUDNN_TAR_FILE} && \
-     cp -P cuda/include/cudnn.h /usr/local/cuda-10.0/include && \
-     cp -P cuda/lib64/libcudnn* /usr/local/cuda-10.0/lib64/ && \
-     chmod a+r /usr/local/cuda-10.0/lib64/libcudnn*
+
+     CUDNN_DOWNLOAD_SUM=28355e395f0b2b93ac2c83b61360b35ba6cd0377e44e78be197b6b61b4b492ba && \
+     curl -fsSL http://developer.download.nvidia.com/compute/redist/cudnn/v7.6.5/cudnn-10.0-linux-x64-v7.6.5.32.tgz -O && \
+     echo "$CUDNN_DOWNLOAD_SUM  cudnn-10.0-linux-x64-v7.6.5.32.tgz" | sha256sum -c - && \
+     tar --no-same-owner -xzf cudnn-10.0-linux-x64-v7.6.5.32.tgz -C /usr/local --wildcards 'cuda/lib64/libcudnn.so.*' && \
+     rm cudnn-10.0-linux-x64-v7.6.5.32.tgz && \
+     ldconfig
+
+#      wget --no-check-certificate --load-cookies /tmp/cookies.txt "https://docs.google.com/uc?export=download&confirm=$(wget --quiet --save-cookies /tmp/cookies.txt --keep-session-cookies 'https://docs.google.com/uc?export=download&id=1LY_Cc8Kb6YsZWNs7z78Yd48lPoV4wIgp' -O- | sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1\n/p')&id=1LY_Cc8Kb6YsZWNs7z78Yd48lPoV4wIgp" -O temp.tgz && rm -rf /tmp/cookies.txt && \
+#      CUDNN_TAR_FILE="temp.tgz" && \
+#      tar -xzvf ${CUDNN_TAR_FILE} && \
+#      cp -P cuda/include/cudnn.h /usr/local/cuda-10.0/include/ && \
+#      cp -P cuda/lib64/libcudnn* /usr/local/cuda-10.0/lib64/ && \
+#      chmod a+r /usr/local/cuda-10.0/lib64/libcudnn* && \
+#      export PATH=/usr/local/cuda-10.0/bin${PATH:+:${PATH}}
+#      export LD_LIBRARY_PATH=/usr/local/cuda-10.0.0/lib${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
 
 
 # 4) change back to notebook user
