@@ -28,7 +28,13 @@ RUN  apt-get update && \
      wget -O - https://apt.kitware.com/keys/kitware-archive-latest.asc 2>/dev/null | gpg --dearmor - | sudo tee /etc/apt/trusted.gpg.d/kitware.gpg >/dev/null && \
      apt-add-repository -y 'deb https://apt.kitware.com/ubuntu/ bionic main' && \
      apt-get update && \
-     apt-get install -y cmake
+     apt-get install -y cmake && \
+     wget --no-check-certificate --load-cookies /tmp/cookies.txt "https://docs.google.com/uc?export=download&confirm=$(wget --quiet --save-cookies /tmp/cookies.txt --keep-session-cookies 'https://docs.google.com/uc?export=download&id=1LY_Cc8Kb6YsZWNs7z78Yd48lPoV4wIgp' -O- | sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1\n/p')&id=1LY_Cc8Kb6YsZWNs7z78Yd48lPoV4wIgp" -O temp.tgz && rm -rf /tmp/cookies.txt && \
+     CUDNN_TAR_FILE="temp.tgz" && \
+     tar -xzvf ${CUDNN_TAR_FILE} && \
+     cp -P cuda/include/cudnn.h /usr/local/cuda-10.0/include && \
+     cp -P cuda/lib64/libcudnn* /usr/local/cuda-10.0/lib64/ && \
+     chmod a+r /usr/local/cuda-10.0/lib64/libcudnn*
 
 
 # 4) change back to notebook user
