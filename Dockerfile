@@ -36,7 +36,6 @@ RUN  apt-get update && \
      tar --no-same-owner -xzf cudnn-10.0-linux-x64-v7.6.5.32.tgz -C /usr/local --wildcards 'cuda/lib64/libcudnn.so.*' && \
      rm cudnn-10.0-linux-x64-v7.6.5.32.tgz && \
      ldconfig
-
 #      wget --no-check-certificate --load-cookies /tmp/cookies.txt "https://docs.google.com/uc?export=download&confirm=$(wget --quiet --save-cookies /tmp/cookies.txt --keep-session-cookies 'https://docs.google.com/uc?export=download&id=1LY_Cc8Kb6YsZWNs7z78Yd48lPoV4wIgp' -O- | sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1\n/p')&id=1LY_Cc8Kb6YsZWNs7z78Yd48lPoV4wIgp" -O temp.tgz && rm -rf /tmp/cookies.txt && \
 #      CUDNN_TAR_FILE="temp.tgz" && \
 #      tar -xzvf ${CUDNN_TAR_FILE} && \
