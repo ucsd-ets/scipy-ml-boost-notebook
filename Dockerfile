@@ -20,9 +20,16 @@ USER root
 #RUN pip install networkx rpy2==3.1.0 python-igraph powerlaw numpy scipy python-louvain
 RUN  apt-get update && \
      apt-get install -y libboost-all-dev && \
-     apt-add-repository 'deb https://apt.kitware.com/ubuntu/ bionic main' && \
+     apt-get install -y apt-transport-https && \
+     apt-get install -y ca-certificates && \
+     apt-get install -y gnupg && \
+     apt-get install -y software-properties-common && \
+     apt-get install -y wget && \
+     wget -O - https://apt.kitware.com/keys/kitware-archive-latest.asc 2>/dev/null | gpg --dearmor - | sudo tee /etc/apt/trusted.gpg.d/kitware.gpg >/dev/null && \
+     apt-add-repository -y 'deb https://apt.kitware.com/ubuntu/ bionic main' && \
      apt-get update && \
      apt-get install -y cmake
+
 
 # 4) change back to notebook user
 USER $NB_UID
