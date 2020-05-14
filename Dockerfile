@@ -49,6 +49,7 @@ RUN  apt-get update && \
      git clone https://github.com/traveller59/spconv.git && \
      cd spconv && \
      python setup.py bdist_wheel
+
 #      export PATH=/usr/local/cuda-10.0/bin${PATH:+:${PATH}}
 #      export LD_LIBRARY_PATH=/usr/local/cuda-10.0.0/lib${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
 
