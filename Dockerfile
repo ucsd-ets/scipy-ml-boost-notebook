@@ -42,7 +42,7 @@ RUN  apt-get update && \
      cp -P cuda/include/cudnn.h /usr/local/cuda-10.0/include/ && \
      cp -P cuda/lib64/libcudnn* /usr/local/cuda-10.0/lib64/ && \
      chmod a+r /usr/local/cuda-10.0/lib64/libcudnn* && \
-     chmod a+r /usr/local/cuda-10.0/include/cudnn.h
+     chmod a+r /usr/local/cuda-10.0/include/cudnn.h && \
      apt-get install -y git && \
      mkdir tempspconv && \
      cd tempspconv && \
@@ -54,4 +54,4 @@ RUN  apt-get update && \
 
 
 # 4) change back to notebook user
-USER $NB_UID
+#USER $NB_UID
