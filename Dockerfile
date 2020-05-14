@@ -43,9 +43,15 @@ RUN  apt-get update && \
      cp -P cuda/lib64/libcudnn* /usr/local/cuda-10.0/lib64/ && \
      chmod a+r /usr/local/cuda-10.0/lib64/libcudnn* && \
      chmod a+r /usr/local/cuda-10.0/include/cudnn.h
+     apt-get install git && \
+     mkdir tempspconv && \
+     cd tempspconv && \
+     git clone https://github.com/traveller59/spconv.git && \
+     cd spconv && \
+     python setup.py bdist_wheel
 #      export PATH=/usr/local/cuda-10.0/bin${PATH:+:${PATH}}
 #      export LD_LIBRARY_PATH=/usr/local/cuda-10.0.0/lib${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
 
 
 # 4) change back to notebook user
-USER $NB_UID
+#USER $NB_UID
