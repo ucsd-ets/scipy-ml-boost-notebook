@@ -43,10 +43,13 @@ RUN  apt-get update && \
      cp -P cuda/lib64/libcudnn* /usr/local/cuda-10.0/lib64/ && \
      chmod a+r /usr/local/cuda-10.0/lib64/libcudnn* && \
      chmod a+r /usr/local/cuda-10.0/include/cudnn.h
-     #apt-get install -y git && \
-     #mkdir tempspconv && \
-     #cd tempspconv && \
-     #git clone https://github.com/traveller59/spconv.git && \
+     apt-get install -y git && \
+     mkdir tempspconv && \
+     cd tempspconv && \
+     git clone https://github.com/traveller59/spconv.git --recursive && \
+     cd spconv && git checkout 7342772 && \
+     python setup.py bdist_wheel && \
+     cd ./dist && pip install *
      #cd spconv && \
      #python setup.py bdist_wheel
 
