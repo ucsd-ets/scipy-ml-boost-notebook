@@ -43,6 +43,8 @@ RUN  apt-get update && \
      cp -P cuda/lib64/libcudnn* /usr/local/cuda-10.0/lib64/ && \
      chmod a+r /usr/local/cuda-10.0/lib64/libcudnn* && \
      chmod a+r /usr/local/cuda-10.0/include/cudnn.h && \
+     export PATH=/usr/local/cuda/bin${PATH:+:${PATH}} && \
+     export LD_LIBRARY_PATH=/usr/local/cuda/lib64${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}} && \
      apt-get install -y git && \
      mkdir tempspconv && \
      cd tempspconv && \
