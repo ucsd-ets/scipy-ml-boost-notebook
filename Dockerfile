@@ -29,7 +29,7 @@ RUN  apt-get update && \
      apt-add-repository -y 'deb https://apt.kitware.com/ubuntu/ bionic main' && \
      apt-get update && \
      apt-get install -y cmake && \
-     pip uninstall -y torch
+#      pip uninstall -y torch
 
 #      CUDNN_DOWNLOAD_SUM=28355e395f0b2b93ac2c83b61360b35ba6cd0377e44e78be197b6b61b4b492ba && \
 #      curl -fsSL http://developer.download.nvidia.com/compute/redist/cudnn/v7.6.5/cudnn-10.0-linux-x64-v7.6.5.32.tgz -O && \
