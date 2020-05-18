@@ -28,7 +28,7 @@ RUN  apt-get update && \
      wget -O - https://apt.kitware.com/keys/kitware-archive-latest.asc 2>/dev/null | gpg --dearmor - | sudo tee /etc/apt/trusted.gpg.d/kitware.gpg >/dev/null && \
      apt-add-repository -y 'deb https://apt.kitware.com/ubuntu/ bionic main' && \
      apt-get update && \
-     apt-get install -y cmake && \
+     apt-get install -y cmake
 #      pip uninstall -y torch
 
 #      CUDNN_DOWNLOAD_SUM=28355e395f0b2b93ac2c83b61360b35ba6cd0377e44e78be197b6b61b4b492ba && \
